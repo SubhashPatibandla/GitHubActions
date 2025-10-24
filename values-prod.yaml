@@ -1,0 +1,4 @@
+replicaCount: 3
+image:
+  repository: 223171131311.dkr.ecr.ap-south-1.amazonaws.com/devops-demo
+  tag: latest

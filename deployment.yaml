@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-demo-deploy
+  labels:
+    app: devops-demo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: devops-demo
+  template:
+    metadata:
+      labels:
+        app: devops-demo
+    spec:
+      containers:
+        - name: devops-demo
+          image: 223171131311.dkr.ecr.ap-south-1.amazonaws.com/devops-demo:latest
+          ports:
+            - containerPort: 3000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: devops-demo-svc
+spec:
+  type: LoadBalancer
+  selector:
+    app: devops-demo
+  ports:
+    - port: 80
+      targetPort: 3000
